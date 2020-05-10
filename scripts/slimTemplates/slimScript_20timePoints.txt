@@ -1,0 +1,176 @@
+// Initialise
+initialize() {
+	     initializeMutationRate(0);
+	     initializeMutationType("m1", 0.5, "f", 0.0);
+	     initializeMutationType("m2", CODOMINANCE, "f", SELECCOEFF);
+	     m2.convertToSubstitution = F; // fixed allele is not removed
+	     initializeGenomicElementType("g1", m1, 1.0);
+	     initializeGenomicElement(g1, 0, 0);
+	     initializeRecombinationRate(0);
+}
+
+// Population size of 5,000 diploid individuals    
+1 {
+  sim.addSubpop("p0", POPSIZE);
+  defineConstant("simID", getSeed()); // save this run's identifier, used to save and restore
+}
+
+// Introduce 1 mutation at generation 1
+1 late() {
+  fraction = asInteger( round(2 * POPSIZE / 100) ); // start at 2%
+  target = sample(p0.genomes, fraction);
+  target.addNewDrawnMutation(m2, 0);
+  sim.outputFull("/disk/regine/data2/madeleine/simulations/messer/playground/seed1/slim1_" + simID + ".txt"); // save the state of the simulation
+}
+
+// Count allele frequency (4 columns: allele count, sample size, most ancient age of sample, most recent age of sample)
+SAMPLING0 late() {
+    sim.addSubpopSplit("p6", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut0 = sim.mutationCounts(p6, sim.mutationsOfType(m2));
+    if (size(mut0) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING0-GENERATION) + "\t" + paste(SAMPLING0-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING0-GENERATION) + "\t" + paste(SAMPLING0-GENERATION) + "\n"); }
+    }
+32 late() {
+    sim.addSubpopSplit("p32", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut32 = sim.mutationCounts(p32, sim.mutationsOfType(m2));
+    if (size(mut32) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(32-GENERATION) + "\t" + paste(32-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut32 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(32-GENERATION) + "\t" + paste(32-GENERATION) + "\n"); }
+    }
+62 late() {
+    sim.addSubpopSplit("p62", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut62 = sim.mutationCounts(p62, sim.mutationsOfType(m2));
+    if (size(mut62) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(62-GENERATION) + "\t" + paste(62-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut62 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(62-GENERATION) + "\t" + paste(62-GENERATION) + "\n"); }
+    }
+90 late() {
+    sim.addSubpopSplit("p90", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut90 = sim.mutationCounts(p90, sim.mutationsOfType(m2));
+    if (size(mut90) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(90-GENERATION) + "\t" + paste(90-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut90 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(90-GENERATION) + "\t" + paste(90-GENERATION) + "\n"); }
+    }
+112 late() {
+    sim.addSubpopSplit("p112", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut112 = sim.mutationCounts(p112, sim.mutationsOfType(m2));
+    if (size(mut112) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(112-GENERATION) + "\t" + paste(112-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut112 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(112-GENERATION) + "\t" + paste(112-GENERATION) + "\n"); }
+    }
+SAMPLING1 late() {
+    sim.addSubpopSplit("p1", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut1 = sim.mutationCounts(p1, sim.mutationsOfType(m2));
+    if (size(mut1) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING1-GENERATION) + "\t" + paste(SAMPLING1-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut1 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING1-GENERATION) + "\t" + paste(SAMPLING1-GENERATION) + "\n"); }
+    }
+185 late() {
+    sim.addSubpopSplit("p185", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut185 = sim.mutationCounts(p185, sim.mutationsOfType(m2));
+    if (size(mut185) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(185-GENERATION) + "\t" + paste(185-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut185 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(185-GENERATION) + "\t" + paste(185-GENERATION) + "\n"); }
+    }
+212 late() {
+    sim.addSubpopSplit("p212", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut212 = sim.mutationCounts(p212, sim.mutationsOfType(m2));
+    if (size(mut212) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(212-GENERATION) + "\t" + paste(212-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut212 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(212-GENERATION) + "\t" + paste(212-GENERATION) + "\n"); }
+    }
+238 late() {
+    sim.addSubpopSplit("p238", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut238 = sim.mutationCounts(p238, sim.mutationsOfType(m2));
+    if (size(mut238) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(238-GENERATION) + "\t" + paste(238-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut238 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(238-GENERATION) + "\t" + paste(238-GENERATION) + "\n"); }
+    }
+SAMPLING2 late() {
+    sim.addSubpopSplit("p2", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut2 = sim.mutationCounts(p2, sim.mutationsOfType(m2)); // count mutations in sample
+    if (size(mut2) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING2-GENERATION) + "\t" + paste(SAMPLING2-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat (mut2 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING2-GENERATION) + "\t" + paste(SAMPLING2-GENERATION) + "\n"); }
+    }
+285 late() {
+    sim.addSubpopSplit("p285", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut285 = sim.mutationCounts(p285, sim.mutationsOfType(m2));
+    if (size(mut285) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(285-GENERATION) + "\t" + paste(285-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut285 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(285-GENERATION) + "\t" + paste(285-GENERATION) + "\n"); }
+    }
+SAMPLING3 late() {
+    sim.addSubpopSplit("p3", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut3 = sim.mutationCounts(p3, sim.mutationsOfType(m2)); // count mutations in sample
+    if (size(mut3) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING3-GENERATION) + "\t" + paste(SAMPLING3-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat (mut3 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING3-GENERATION) + "\t" + paste(SAMPLING3-GENERATION) + "\n"); }
+    }
+335 late() {
+    sim.addSubpopSplit("p335", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut335 = sim.mutationCounts(p335, sim.mutationsOfType(m2));
+    if (size(mut335) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(335-GENERATION) + "\t" + paste(335-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut335 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(335-GENERATION) + "\t" + paste(335-GENERATION) + "\n"); }
+    }
+362 late() {
+    sim.addSubpopSplit("p362", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut362 = sim.mutationCounts(p362, sim.mutationsOfType(m2));
+    if (size(mut362) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(362-GENERATION) + "\t" + paste(362-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut362 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(362-GENERATION) + "\t" + paste(362-GENERATION) + "\n"); }
+    }
+385 late() {
+    sim.addSubpopSplit("p385", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut385 = sim.mutationCounts(p385, sim.mutationsOfType(m2));
+    if (size(mut385) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(385-GENERATION) + "\t" + paste(385-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut385 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(385-GENERATION) + "\t" + paste(385-GENERATION) + "\n"); }
+    }
+SAMPLING4 late() {
+    sim.addSubpopSplit("p4", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut4 = sim.mutationCounts(p4, sim.mutationsOfType(m2)); // count mutations in sample
+    if (size(mut4) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING4-GENERATION) + "\t" + paste(SAMPLING4-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut4 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING4-GENERATION) + "\t" + paste(SAMPLING4-GENERATION) + "\n"); }
+    }
+438 late() {
+    sim.addSubpopSplit("p438", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut438 = sim.mutationCounts(p438, sim.mutationsOfType(m2));
+    if (size(mut438) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(438-GENERATION) + "\t" + paste(438-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mu438 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(438-GENERATION) + "\t" + paste(438-GENERATION) + "\n"); }
+    }
+462 late() {
+    sim.addSubpopSplit("p462", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut462 = sim.mutationCounts(p462, sim.mutationsOfType(m2));
+    if (size(mut462) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(462-GENERATION) + "\t" + paste(462-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut462 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(462-GENERATION) + "\t" + paste(462-GENERATION) + "\n"); }
+    }
+500 late() {
+    sim.addSubpopSplit("p500", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut500 = sim.mutationCounts(p500, sim.mutationsOfType(m2));
+    if (size(mut500) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(500-GENERATION) + "\t" + paste(500-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut500 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(500-GENERATION) + "\t" + paste(500-GENERATION) + "\n"); }
+    }
+GENERATION late() {
+    betterCount = sim.mutationFrequencies(p0, sim.mutationsOfType(m2)) * SAMPLESIZE * 2;
+    if (size(betterCount) == 1) // required for the if statement to work for some reason
+    {
+	// we will just assume that we have sampled the mutation at least once in present time (to avoid zero everywhere otherwise inference will stall)
+    	if (asInteger(betterCount) < 1) { cat(1 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(GENERATION-GENERATION) + "\t" + paste(GENERATION-GENERATION) + "\n"); }
+    	else { cat(round(betterCount) + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(GENERATION-GENERATION) + "\t" + paste(GENERATION-GENERATION) + "\n"); }
+    } else { cat(1 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(GENERATION-GENERATION) + "\t" + paste(GENERATION-GENERATION) + "\n"); }
+}
+
+// Avoid loosing the mutated allele
+2:GENERATION late() {
+    if (sim.countOfMutationsOfType(m2) == 0) { // if allele is lost
+    sim.readFromPopulationFile("/disk/regine/data2/madeleine/simulations/messer/playground/seed1/slim1_" + simID + ".txt"); // re-run
+    setSeed(rdunif(1, 0, asInteger(2^62) - 1)); // with a new random seed number
+    }
+}
