@@ -1,11 +1,5 @@
-#!/disk/regine/data2/madeleine/simulations/messer/playground/python
+#!/Horse_Project/scripts/python
 # written by Madeleine Murray
-
-# COMPARING DIFFERENT PARAMATERS
-# Refer to the script it is used in:
-# generatingWithSlimAndInferingWithSr.sh
-# Warning: filenames must have the same structure as in script
-# and .param & .time should be in the same directory
 
 # INPUT DESCRIPTION
 # First argument: name of input file (with extension .param)
@@ -46,7 +40,7 @@ def extractInfoFromFileName(startStr, endStr):
 
 
 def extractInferredSelectionCoefficient():
-    '''Extract all  information from file'''
+    '''Extract all information from file'''
     
     inferredFile = pd.read_csv(inputFile, sep='\t') #import data from file
     popSize = extractInfoFromFileName("_popSize", "_selecCoeff") #extract population size
