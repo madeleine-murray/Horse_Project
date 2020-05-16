@@ -1,0 +1,57 @@
+// Initialise
+initialize() {
+	     initializeMutationRate(0);
+	     initializeMutationType("m1", 0.5, "f", 0.0);
+	     initializeMutationType("m2", CODOMINANCE, "f", SELECCOEFF);
+	     m2.convertToSubstitution = F; // fixed allele is not removed
+	     initializeGenomicElementType("g1", m1, 1.0);
+	     initializeGenomicElement(g1, 0, 0);
+	     initializeRecombinationRate(0);
+}
+
+// Population size of 5,000 diploid individuals    
+1 {
+  sim.addSubpop("p0", POPSIZE);
+  defineConstant("simID", getSeed()); // save this run's identifier, used to save and restore
+}
+
+// Introduce 1 mutation at generation 1
+1 late() {
+  fraction = asInteger( round(2 * POPSIZE / 100) ); // start at 2%
+  target = sample(p0.genomes, fraction);
+  target.addNewDrawnMutation(m2, 0);
+  sim.outputFull("/disk/regine/data2/madeleine/simulations/messer/playground/seed2/slim2_" + simID + ".txt"); // save the state of the simulation
+}
+
+// Count allele frequency (4 columns: allele count, sample size, most ancient age of sample, most recent age of sample)
+SAMPLING0 late() {
+    sim.addSubpopSplit("p6", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut0 = sim.mutationCounts(p6, sim.mutationsOfType(m2));
+    if (size(mut0) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING0-GENERATION) + "\t" + paste(SAMPLING0-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat(mut0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING0-GENERATION) + "\t" + paste(SAMPLING0-GENERATION) + "\n"); }
+    }
+SAMPLING3 late() {
+    sim.addSubpopSplit("p3", SAMPLESIZE, p0); // split subpopulation for sampling
+    mut3 = sim.mutationCounts(p3, sim.mutationsOfType(m2)); // count mutations in sample
+    if (size(mut3) == 0) { cat(0 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING3-GENERATION) + "\t" + paste(SAMPLING3-GENERATION) + "\n"); }
+    // otherwise if zero it does not print anything
+    else { cat (mut3 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(SAMPLING3-GENERATION) + "\t" + paste(SAMPLING3-GENERATION) + "\n"); }
+    }
+GENERATION late() {
+    betterCount = sim.mutationFrequencies(p0, sim.mutationsOfType(m2)) * SAMPLESIZE * 2;
+    if (size(betterCount) == 1) // required for the if statement to work for some reason
+    {
+	// we will just assume that we have sampled the mutation at least once in present time (to avoid zero everywhere otherwise inference will stall)
+    	if (asInteger(betterCount) < 1) { cat(1 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(GENERATION-GENERATION) + "\t" + paste(GENERATION-GENERATION) + "\n"); }
+    	else { cat(round(betterCount) + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(GENERATION-GENERATION) + "\t" + paste(GENERATION-GENERATION) + "\n"); }
+    } else { cat(1 + "\t" + paste(SAMPLESIZE*2) + "\t" + paste(GENERATION-GENERATION) + "\t" + paste(GENERATION-GENERATION) + "\n"); }
+}
+
+// Avoid loosing the mutated allele
+2:GENERATION late() {
+    if (sim.countOfMutationsOfType(m2) == 0) { // if allele is lost
+    sim.readFromPopulationFile("/disk/regine/data2/madeleine/simulations/messer/playground/seed2/slim2_" + simID + ".txt"); // re-run
+    setSeed(rdunif(1, 0, asInteger(2^62) - 1)); // with a new random seed number
+    }
+}
