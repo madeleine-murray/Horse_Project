@@ -11,7 +11,7 @@ OMP_NUM_THREADS=1; OPENBLAS_NUM_THREADS=1; #avoid mashup during parallel runs
 while [ $processed -ne $expected ]; do #while the number of processed line is different to the number of expected lines
     
     # infer with sr
-    /Horse_Projects/scripts/sr -D /Horse_Projects/scripts/slimTemplates/generations/generated_$filename.txt -N $popsize -n $ITERATIONS -g 500 -F 20 -f $PRINT -s 100 -P /Horse_Projects/scripts/demography/$popsize.pop -e $RANDOM -o /Horse_Projects/scripts/results/inferences/infered${run}_$filename &>/dev/null
+    /Horse_Projects/scripts/sr -D /Horse_Projects/scripts/slimTemplates/generations/generated_$filename.txt -N $popsize -n $ITERATIONS -g 500 -F 20 -f $PRINT -s 100 -P /Horse_Projects/scripts/demography/constant${popsize}.pop -e $RANDOM -o /Horse_Projects/scripts/results/inferences/infered${run}_$filename &>/dev/null
 
     # check inference has been processed fully (bugs rarely happen but best to avoid)
     gunzip -f /Horse_Projects/scripts/results/inferences/infered${run}_$filename.param.gz #unzip interesting file (overwriting previous file)
