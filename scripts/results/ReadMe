@@ -1,1 +1,8 @@
-Results files used in Figures
+Results files used in Figures for the paper.
+
+The specie of horse, cattle or dogs is always specified first.
+Stong selection was mostly tested (except where "weak" is specified).
+"tp" stand for "time points". If nothing is specified, assume 6 time points.
+Some files contain only one effective population size, specified as "Ne"
+(otherwise information is present in columns inside file)
+"sim1, "sim2" and "sim3" stands for simulations 1, 2 and 3 respectively
