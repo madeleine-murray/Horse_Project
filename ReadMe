@@ -1,3 +1,17 @@
-As part of Prof Ludovic Orlando's team, I studied selection in horses from Janurary to June 2020.
+Abstract
 
-This repository contains codes and data from this study.
+The extraction and sequencing of ancient DNA has provided scientist with time series to detect selection signatures, but a
+comprehensive evaluation of the power gained is still lacking. It is only in the last decade that the improvement of
+sequencing technologies and methodologies have allowed the retrieval of DNA from fossils. The incorporation of ancient
+specimens with modern populations increases power to detect selection signatures. This study represents a thorough
+investigation of the parameters expected to impact the identifiability of selection, providing guidelines for designing
+future studies of ancient selection. Parameters such as the number of time series, sample size and population demography
+were challenged.
+
+Allele trajectories were generated with SLiM, but were shaped to resemble the Domestic horse population for the study of
+selection during domestication. Selection was then inferred with sr and its accuracy and precision were evaluated. Only strong
+selection signatures could be detected suggesting that such methodology is only possible on populations that have experienced
+strong selection, such as domestic animals. The number of time series and sample size did not appear to play a critical role
+in the detection of selection signals suggesting that this pipeline can be extended to other domesticates, even with a lesser
+ancient DNA dataset. On the other hand, a reduction in population size reduced power to detect selection. It is therefore
+critical to model the demography of the population of interest before aiming to study selection.
