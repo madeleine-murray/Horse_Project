@@ -1,3 +1,7 @@
 The repository contains files required to model population demography.
 
-"constant" stands for a constant population through time.
+"constant" stands for a constant population through time,
+with its starting population size.
+
+"horse" mimics the horse's demography,
+with its starting population size.
