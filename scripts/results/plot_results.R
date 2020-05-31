@@ -4,7 +4,7 @@ regY <- c(0, 0.005, 0.015, 0.025, 0.035, 0.045)
 regDF <- data.frame(regX, regY)
 
 # IMPORT DATA
-setwd('/Users/mad/Desktop/Horse/Results/RESULTS')
+setwd('/Horse_Projects/scripts/results/')
 library(ggplot2)
 library(ggpmisc)
 results <- read.table('resultsFile.txt', header = TRUE, sep = "\t", dec = ".", row.names = NULL)
