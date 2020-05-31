@@ -1,1 +1,9 @@
 This reprository contains all the scripts to launch the pipeline.
+
+pipeline.sh is the main script
+it uses inference.sh to loop through multiple inferences
+and createOutput.py to produce the final output
+
+demography contains the file for population demography
+results contains all the result files use to produce the figures in the paper
+slimTemplate contains the scripts for generating allele trajectories from different time points.
