@@ -1,1 +1,4 @@
-This folder contains scripts to generate allele frequencies.
+This repository contains scripts to generate allele trajectories depending on time points.
+As well as two supplementary tables to better visiualise time points
+(Table 1 for 3, 6, 12 and 20 time points for horses
+Table 2 for 6 and 12 time points for dogs and cattle).
